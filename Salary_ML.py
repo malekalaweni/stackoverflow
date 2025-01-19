@@ -35,7 +35,7 @@ def clean_data(df):
     for col in num_vars:
         df[col].fillna((df[col].mean()), inplace=True)
 
-    # Dummy the categorical variables
+    # Dummy the categorical variables Dummy the categorical variables
     cat_vars = df.select_dtypes(include=['object']).copy().columns
     for var in  cat_vars:
         # for each cat add dummy var, drop original column
@@ -90,13 +90,14 @@ def find_optimal_lm_mod(X, y, cutoffs, test_size = .30, random_state=42, plot=Tr
         plt.legend(loc=1)
         plt.show()
 
+
     best_cutoff = max(results, key=results.get)
 
     #reduce X matrix
     reduce_X = X.iloc[:, np.where((X.sum() > int(best_cutoff)) == True)[0]]
     num_feats.append(reduce_X.shape[1])
 
-    #split the data into train and test
+    #split the data into train and test e data into train and test
     X_train, X_test, y_train, y_test = train_test_split(reduce_X, y, test_size = test_size, random_state=random_state)
 
     #fit the model
